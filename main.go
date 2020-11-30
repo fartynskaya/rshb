@@ -1,21 +1,18 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+  "fmt"
+  "log"
+  "net/http"
 )
 
-var stop bool
+var responseText = "Hello! It's me!!!"
 
 func HomeRouterHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprintf(w, "Hello! It's me!!!")
-	stop = true
+  w.Header().Add("Content-Type", "text/html; charset=utf-8")
+  fmt.Fprint(w, responseText)
 }
-func main(){
-	stop = false
-	http.HandleFunc("/", HomeRouterHandler)
-	go http.ListenAndServe(":8090", nil)
-	for !stop {
-	}
+func main() {
+  http.HandleFunc("/", HomeRouterHandler)
+  log.Fatal(http.ListenAndServe(":8090", nil))
 }
