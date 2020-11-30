@@ -6,7 +6,7 @@ import (
   "net/http"
 )
 
-var responseText = "Hello, kill me."
+var responseText = "Hello, it's me."
 
 func HomeRouterHandler(w http.ResponseWriter, r *http.Request) {
   w.Header().Add("Content-Type", "text/html; charset=utf-8")
